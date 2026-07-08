@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Pretendard, sans-serif;
+}
+
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #eef2f7;
+}
+
+#sidebar {
+    width: 340px;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    padding: 30px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    color: #2B7CFF;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.logo p {
+    color: #6B7280;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 35px;
+}
+
+.infoCard {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.05);
+    transition: .2s;
+}
+
+.infoCard:hover {
+    transform: translateY(-2px);
+}
+
+.infoCard span {
+    color: #6B7280;
+    font-size: 14px;
+}
+
+.infoCard h2 {
+    margin-top: 10px;
+    color: #2B7CFF;
+    font-size: 28px;
+}
+
+#resetBtn {
+    margin-top: auto;
+    height: 54px;
+    border: none;
+    border-radius: 16px;
+    background: #2B7CFF;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#resetBtn:hover {
+    background: #1668ef;
+}
+
+#map {
+    flex: 1;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 18px;
+}
+
+.leaflet-popup-content {
+    width: 260px;
+    margin: 18px;
+}
+
+.popupTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 14px;
+    color: #111827;
+}
+
+.popupRow {
+    margin-bottom: 10px;
+    color: #4B5563;
+    line-height: 1.6;
+}
+
+.popupButton {
+    width: 100%;
+    margin-top: 16px;
+    height: 46px;
+    border: none;
+    border-radius: 12px;
+    background: #2B7CFF;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.popupButton:hover {
+    background: #1668ef;
+}
+
+.leaflet-tooltip {
+    background: rgba(43,124,255,.95);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+}
+
+.leaflet-tooltip::before {
+    display: none;
+}
+
+.leaflet-bar button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.leaflet-bar button:hover {
+    background: #f2f4f7;
+}
