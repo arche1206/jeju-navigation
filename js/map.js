@@ -21,16 +21,21 @@ initPlaceMarkers();
 map.on("click", ({ latlng }) => {
     createStartMarker(latlng);
 });
-
-
-
-/* ---------- Map ---------- */
-
 function createMap() {
 
+    const bounds = L.latLngBounds(
+        [33.05, 126.05],
+        [33.65, 126.98]
+    );
+
     return L.map("map", {
-        zoomControl: false
-    }).setView([33.3617, 126.5292], 10);
+    zoomControl: false,
+    maxBounds: bounds,
+    maxBoundsViscosity: 1.0,
+    worldCopyJump: false,
+    minZoom: 10,
+    maxZoom: 18
+}).setView([33.3617, 126.5292], 10);
 
 }
 
@@ -65,11 +70,6 @@ function createZoomControl() {
     }).addTo(map);
 
 }
-
-
-
-/* ---------- Icons ---------- */
-
 function createStartIcon() {
 
     return L.divIcon({
@@ -110,11 +110,6 @@ function createGreenIcon() {
     });
 
 }
-
-
-
-/* ---------- Start Marker ---------- */
-
 function createStartMarker(latlng) {
 
     if (state.startMarker) {
@@ -122,29 +117,14 @@ function createStartMarker(latlng) {
     }
 
     state.startMarker = L.marker(latlng, {
-        icon: state.icons.start,
-        draggable: true
-    }).addTo(map);
+    icon: state.icons.start
+}).addTo(map);
 
     state.startMarker.bindTooltip("출발지", {
         permanent: true,
         direction: "top"
     });
-
-    state.startMarker.on("dragend", () => {
-
-        if (state.selectedPlace) {
-            drawRoute();
-        }
-
-    });
-
 }
-
-
-
-/* ---------- Selection ---------- */
-
 function selectPlace(marker, place) {
 
     if (state.selectedMarker) {
@@ -157,11 +137,6 @@ function selectPlace(marker, place) {
     marker.setIcon(state.icons.green);
 
 }
-
-
-
-/* ---------- Popup ---------- */
-
 function createPlacePopup(place) {
 
     return `
@@ -193,8 +168,6 @@ function createPlacePopup(place) {
     `;
 
 }
-/* ---------- Place Markers ---------- */
-
 function initPlaceMarkers() {
 
     places.forEach(createPlaceMarker);
@@ -228,11 +201,6 @@ function createPlaceMarker(place) {
     state.placeMarkers.push(marker);
 
 }
-
-
-
-/* ---------- Controls ---------- */
-
 function createMapControl() {
 
     const control = L.control({
@@ -293,9 +261,4 @@ function showSatelliteMap() {
     }
 
 }
-
-
-
-/* ---------- Export ---------- */
-
 window.map = map;
