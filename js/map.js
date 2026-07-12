@@ -21,6 +21,7 @@ initPlaceMarkers();
 map.on("click", ({ latlng }) => {
     createStartMarker(latlng);
 });
+
 function createMap() {
 
     const bounds = L.latLngBounds(
@@ -29,13 +30,13 @@ function createMap() {
     );
 
     return L.map("map", {
-    zoomControl: false,
-    maxBounds: bounds,
-    maxBoundsViscosity: 1.0,
-    worldCopyJump: false,
-    minZoom: 10,
-    maxZoom: 18
-}).setView([33.3617, 126.5292], 10);
+        zoomControl: false,
+        maxBounds: bounds,
+        maxBoundsViscosity: 1.0,
+        worldCopyJump: false,
+        minZoom: 10,
+        maxZoom: 18
+    }).setView([33.3617, 126.5292], 10);
 
 }
 
@@ -70,6 +71,7 @@ function createZoomControl() {
     }).addTo(map);
 
 }
+
 function createStartIcon() {
 
     return L.divIcon({
@@ -110,6 +112,7 @@ function createGreenIcon() {
     });
 
 }
+
 function createStartMarker(latlng) {
 
     if (state.startMarker) {
@@ -117,14 +120,16 @@ function createStartMarker(latlng) {
     }
 
     state.startMarker = L.marker(latlng, {
-    icon: state.icons.start
-}).addTo(map);
+        icon: state.icons.start
+    }).addTo(map);
 
     state.startMarker.bindTooltip("출발지", {
         permanent: true,
         direction: "top"
     });
+
 }
+
 function selectPlace(marker, place) {
 
     if (state.selectedMarker) {
@@ -137,6 +142,7 @@ function selectPlace(marker, place) {
     marker.setIcon(state.icons.green);
 
 }
+
 function createPlacePopup(place) {
 
     return `
@@ -163,6 +169,14 @@ function createPlacePopup(place) {
             onclick="drawRoute()">
 
             길찾기
+
+        </button>
+
+        <button
+            class="popupButton"
+            onclick="window.open('${place.link}', '_blank')">
+
+            홈페이지
 
         </button>
     `;
@@ -201,6 +215,7 @@ function createPlaceMarker(place) {
     state.placeMarkers.push(marker);
 
 }
+
 function createMapControl() {
 
     const control = L.control({
@@ -261,4 +276,5 @@ function showSatelliteMap() {
     }
 
 }
+
 window.map = map;
